@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../pia/laravel-pos-master"
+		},
+		{
+			"path": "../../../../ICRITHealthCare/ICRITHealthCare"
+		},
+		{
+			"path": "../../../../UserVerificationProject copy/UserVerificationProject copy"
+		}
+	],
+	"settings": {}
+}

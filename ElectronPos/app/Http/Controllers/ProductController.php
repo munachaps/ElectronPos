@@ -18,7 +18,7 @@ class ProductController extends Controller
      //view all the products
     public function viewProducts()
     {
-        $products = Product::all();
+        $products = Product::orderBy("id", "asc")->get();
         return view('pages.view-products')->with("products",$products);
     }
 

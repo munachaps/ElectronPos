@@ -34,7 +34,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Number Of Cattegories</p>
-                                <h4 class="mb-0">{{$numberOfCattegories}}</h4>
+                               
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -72,7 +72,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Customers</p>
-                                <h4 class="mb-0">{{$numberOfCustomers}}</h4>
+                               
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">

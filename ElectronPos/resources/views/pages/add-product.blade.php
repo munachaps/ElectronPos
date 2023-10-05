@@ -83,8 +83,7 @@
                                     @error('name')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
-                                </div>
-                                
+                                </div>                   
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Barcode</label>
                                     <input type="text" name="barcode" class="form-control border border-2 p-2" required>

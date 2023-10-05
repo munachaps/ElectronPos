@@ -46,7 +46,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Create An Employee</h6>
+                                <h6 class="mb-3">Create A Supplier</h6>
                             </div>
                         </div>
                     </div>
@@ -73,27 +73,46 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method='POST' action='{{ route('submit-cattegory') }}'>
-                            @csrf
-                            <div class="row">
-                                
-                                <div class="mb-3 col-md-12">
-                                    <label class="form-label">Cattegory Name</label>
-                                    <input type="text" name="name" class="form-control border border-2 p-2" required>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Staff_Id">Select Employee Type</label>
-                                <select name="cattegory_id" class="form-control border border-2 p-2" required>
-                                        <option value="">Admin</option>
-                                        <option value="">Cashier</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
-                        </form>
+                        <div class="form-group">
+                            <label for="customer_name">Customer Name</label>
+                            <input type="text" name="customer_name" id="customer_name" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <input type="text" name="code" id="code" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_id">User ID</label>
+                            <input type="text" name="user_id" id="user_id" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer_taxnumber">Customer Tax Number</label>
+                            <input type="text" name="customer_taxnumber" id="customer_taxnumber" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer_city">Customer City</label>
+                            <input type="text" name="customer_city" id="customer_city" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer_address">Customer Address</label>
+                            <input type="text" name="customer_address" id="customer_address" class="form-control border border-2 p-2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer_phonenumber">Customer Phone Number</label>
+                            <input type="text" name="customer_phonenumber" id="customer_phonenumber" class="form-control border border-2 p-2" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Create SUpplier</button>
+                        </div>
+                    </form>
+
 
                     </div>
                 </div>

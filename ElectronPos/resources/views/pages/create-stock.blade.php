@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="user-profile"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='User Profile'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Add Cattegory'></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
@@ -32,10 +32,10 @@
                         <div class="nav-wrapper position-relative end-0">
                             <ul class="nav nav-pills nav-fill p-1" role="tablist">
                                 <li class="nav-item">
-                                    <a class="btn btn-info" href="{{ route('view-customers') }}"
+                                    <a class="btn btn-info" href="{{ route('view-cattegories') }}"
                                         role="tab" aria-selected="true">
                                         <i class="material-icons text-lg position-relative"></i>
-                                        <span class="ms-1">View Customers</span>
+                                        <span class="ms-1">View Cattegories</span>
                                     </a>
                                 </li>
                             </ul>
@@ -46,7 +46,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Create A Customer</h6>
+                                <h6 class="mb-3"></h6>
                             </div>
                         </div>
                     </div>
@@ -73,48 +73,28 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method="POST" action="{{ route('create-customers') }}">
+                        <form method='POST' action='{{ route('submit-cattegory') }}'>
                             @csrf
-                            <div class="form-group">
-                                <label for="customer_name">Customer Name</label>
-                                <input type="text" name="customer_name" id="customer_name" class="form-control border border-2 p-2" required>
+                            <div class="row">
+                                
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Cattegory Name</label>
+                                    <input type="text" name="name" class="form-control border border-2 p-2" required>
+                                    @error('name')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="code">Code</label>
-                                <input type="text" name="code" id="code" class="form-control border border-2 p-2" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_id">User ID</label>
-                                <input type="text" name="user_id" id="user_id" class="form-control border border-2 p-2" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer_taxnumber">Customer Tax Number</label>
-                                <input type="text" name="customer_taxnumber" id="customer_taxnumber" class="form-control border border-2 p-2" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="customer_city">Customer City</label>
-                                <input type="text" name="customer_city" id="customer_city" class="form-control border border-2 p-2" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="customer_address">Customer Address</label>
-                                <input type="text" name="customer_address" id="customer_address" class="form-control border border-2 p-2" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="customer_phonenumber">Customer Phone Number</label>
-                                <input type="text" name="customer_phonenumber" id="customer_phonenumber" class="form-control border border-2 p-2" required>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Create Customer</button>
-                            </div>
+                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
                         </form>
+
                     </div>
                 </div>
             </div>
+
         </div>
+        <x-footers.auth></x-footers.auth>
     </div>
     <x-plugins></x-plugins>
+
 </x-layout>

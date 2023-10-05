@@ -22,10 +22,9 @@ class DashboardController extends Controller
     {
         $numberOfProducts = Product::all()->count();
         $numberOfCustomers = Customer::all()->count();
-        $numberOfCattegories = Cattegory::all()->count();
+        //$numberOfCattegories = Cattegory::all()->count();
         $users = User::all()->count();
         return view('dashboard.index')->with("numberOfProducts",$numberOfProducts)
-        ->with("numberOfCattegories",$numberOfCattegories)
         ->with("users",$users)->with("numberOfCustomers",$numberOfCustomers);
     }
 }

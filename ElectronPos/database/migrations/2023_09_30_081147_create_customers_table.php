@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
+            $table->string('code');
             $table->unsignedBigInteger('user_id');
+            $table->string('customer_taxnumber')->unique();
+            $table->string('customer_city')->unique();
             $table->string('customer_address')->unique();
             $table->string('customer_phonenumber')->unique();
             $table->foreign('user_id')->references('id')->on('customers');

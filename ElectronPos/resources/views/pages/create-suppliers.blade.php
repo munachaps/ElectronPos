@@ -83,12 +83,6 @@
                             <label for="code">Suppliers Code</label>
                             <input type="text" name="code" id="code" class="form-control border border-2 p-2" required>
                         </div>
-
-                        <div class="form-group">
-                            <label for="user_id">User ID</label>
-                            <input type="text" name="user_id" id="user_id" class="form-control border border-2 p-2" required>
-                        </div>
-
                         <div class="form-group">
                             <label for="customer_taxnumber">Suppliers Tax Number</label>
                             <input type="text" name="customer_taxnumber" id="customer_taxnumber" class="form-control border border-2 p-2" required>
@@ -108,6 +102,13 @@
                             <label for="customer_phonenumber">Suppliers Phone Number</label>
                             <input type="text" name="customer_phonenumber" id="customer_phonenumber" class="form-control border border-2 p-2" required>
                         </div>
+                        <div class="form-group">
+                            <label for="personal_care">Status</label>
+                            <select name="product_status" id="personal_care" class="form-control border border-2 p-2" required>
+                            <option value="active">Active</option>
+                            <option value="not_active">Not Active</option>
+                             </select>
+                            <hr>
                         <hr>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create Supplier</button>

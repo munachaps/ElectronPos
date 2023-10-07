@@ -31,7 +31,8 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dum the data and see if it sending to the controller
+        dd($request->all());
     }
 
     /**

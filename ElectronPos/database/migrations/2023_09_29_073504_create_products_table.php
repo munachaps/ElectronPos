@@ -19,10 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('barcode')->unique();
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2)->default(0.00); // Set an appropriate default value
+            $table->integer('unit_of_measurement')->nullable();
+            $table->decimal('price', 10, 2)->default(0.00);
             $table->boolean('status')->default(true);
-            $table->integer('quantity')->default(0); // Set an appropriate default value
-            $table->foreign('category_id')->references('id')->on('categories'); // Corrected table name
+            $table->enum('status', ['Yes', 'No']);
+            $table->foreign('category_id')->references('id')->on('categories'); 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();            
         });

@@ -15,16 +15,14 @@ class DashboardController extends Controller
     public function welcome(){
         return view("welcome");
     }
-
-
     //return the numbefoproducts, number of customers and number of cattegories and all the users
     public function index()
     {
         $numberOfProducts = Product::all()->count();
         $numberOfCustomers = Customer::all()->count();
-        //$numberOfCattegories = Cattegory::all()->count();
+        $numberOfCattegories = Cattegory::all()->count();
         $users = User::all()->count();
         return view('dashboard.index')->with("numberOfProducts",$numberOfProducts)
-        ->with("users",$users)->with("numberOfCustomers",$numberOfCustomers);
+        ->with("users",$users)->with("numberOfCustomers",$numberOfCustomers)->with("numberOfCattegories",$numberOfCattegories);
     }
 }

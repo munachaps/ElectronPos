@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method="POST" action="{{ route('create-customers') }}">
+                        <form method="POST" action="{{ route('submit-customers') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="customer_name">Customer Name</label>

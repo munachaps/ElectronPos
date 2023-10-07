@@ -46,12 +46,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/submit-cattegory', [CattegoryController::class, 'store'])->name('submit-cattegory');
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SuppliersController::class, 'create'])->name('create-suppliers');
+	Route::post('/submit-suppliers', [SuppliersController::class, 'store'])->name('submit-suppliers');
 	Route::post('/submit-sale', [SalesController::class, 'store'])->name('submit-sale');
 	Route::get('/create-employee', [EmployeeController::class, 'create'])->name('create-employee');
 	Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('view-products');
 	Route::get('/view-employees', [EmployeeController::class, 'viewEmployees'])->name('view-employees');
 	Route::get('/view-cattegories', [CattegoryController::class, 'viewCattegories'])->name('view-cattegories');
 	Route::get('/create-customers', [CustomerController::class, 'create'])->name('create-customers');
+	Route::get('/submit-customers', [CustomerController::class, 'create'])->name('submit-customers');
 	Route::get('/create-suppliers', [SupplierController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-supplier', [SupplierController::class, 'store'])->name('submit-supplier');
 	Route::post('/submit-customer', [CustomerController::class, 'store'])->name('submit-customer');

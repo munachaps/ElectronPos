@@ -32,10 +32,10 @@
                         <div class="nav-wrapper position-relative end-0">
                             <ul class="nav nav-pills nav-fill p-1" role="tablist">
                                 <li class="nav-item">
-                                    <a class="btn btn-info" href="{{ route('view-employees') }}"
+                                    <a class="btn btn-info" href="{{ route('view-suppliers') }}"
                                         role="tab" aria-selected="true">
                                         <i class="material-icons text-lg position-relative"></i>
-                                        <span class="ms-1">View Employees</span>
+                                        <span class="ms-1">View Suppliers</span>
                                     </a>
                                 </li>
                             </ul>
@@ -108,7 +108,6 @@
                             <option value="active">Active</option>
                             <option value="not_active">Not Active</option>
                              </select>
-                            <hr>
                         <hr>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create Supplier</button>

@@ -16,6 +16,15 @@ class SupplierController extends Controller
         //
     }
 
+    public function viewSuppliers()
+    {
+         //return all the suppliers to the view suppliers blade file
+         $suppliers = Supplier::orderBy("id", "asc")->get();
+         return view('pages.view-suppliers')->with("suppliers",$suppliers);
+    }
+
+    
+
     /**
      * Show the form for creating a new resource.
      */

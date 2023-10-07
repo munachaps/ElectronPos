@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('view-products');
 	Route::get('/view-employees', [EmployeeController::class, 'viewEmployees'])->name('view-employees');
 	Route::get('/view-cattegories', [CattegoryController::class, 'viewCattegories'])->name('view-cattegories');
+	Route::get('/view-suppliers', [SupplierController::class, 'viewSuppliers'])->name('view-suppliers');
 	Route::get('/create-customers', [CustomerController::class, 'create'])->name('create-customers');
 	Route::get('/submit-customers', [CustomerController::class, 'create'])->name('submit-customers');
 	Route::get('/create-suppliers', [SupplierController::class, 'create'])->name('create-suppliers');

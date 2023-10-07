@@ -106,6 +106,13 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Unit Of Measurement</label>
+                                    <input type="number" name="price" class="form-control border border-2 p-2" required>
+                                    @error('price')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <label for="Staff_Id">Select Cattegory</label>
                                     <select name="cattegory_id" class="form-control border border-2 p-2" required>
@@ -123,16 +130,15 @@
                                         <p class='text-danger inputerror'>{{ $message }} </p>
                                         @enderror
                                 </div>
-                                <div class="mb-3 col-md-12">
-                                    <label for="floatingTextarea2">Status</label>
-                                    <textarea class="form-control border border-2 p-2"
-                                        name="status"
-                                        rows="4" cols="50" required></textarea>
-                                        @error('status')
-                                        <p class='text-danger inputerror'>{{ $message }} </p>
-                                        @enderror
-                                </div>
+                            <div class="form-group">
+                            <label for="personal_care">Product Status</label>
+                            <select name="product_status" id="personal_care" class="form-control border border-2 p-2" required>
+                            <option value="active">Active</option>
+                            <option value="not_active">Not Active</option>
+                             </select>
+                            </div>   
                             </div>
+                            <hr>
                             <button type="submit" class="btn bg-gradient-dark">Submit</button>
                         </form>
 

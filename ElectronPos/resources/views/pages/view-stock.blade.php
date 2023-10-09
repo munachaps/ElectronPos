@@ -24,6 +24,9 @@
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder ">
                                                 Product Name</th>
+                                                <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                                Unit Of Measurement</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder ">
                                                Quantity</th>
@@ -50,6 +53,9 @@
                                             </td>
                                             <td>
                                                 <p class="text-xs font-weight-bold mb-0">{{$stock->quantity}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{$stock->unit_of_measurement}}</p>
                                             </td>
                                         </tr>
                                         @endforeach

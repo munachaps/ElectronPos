@@ -39,16 +39,7 @@
                                                 Selling Price</th>
                                                 <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                Quantity</th>
-                                                <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                Created At</th>
-                                                <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                Update</th>
-                                                <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                Delete</th>          
+                                                Quantity</th>    
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,22 +72,12 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span
-                                                    class="text-secondary text-xs font-weight-bold">{{$product->price}}</span>
+                                                    class="text-secondary text-xs font-weight-bold">{{$product->unit_of_measurement}}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{$product->selling_price}}</span>
                                             </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">{{$product->created_at}}</span>
-                                            </td>
-                                            <td>
-                                                <a href="" class = "btn btn-dark">Update</a>
-                                            </td> 
-                                            <td>
-                                                <a href="" class = "btn btn-info btn-link">Delete</a>
-                                            </td>  
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -109,5 +90,4 @@
         </div>
     </main>
     <x-plugins></x-plugins>
-
 </x-layout>

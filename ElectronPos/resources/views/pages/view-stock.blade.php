@@ -15,52 +15,48 @@
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                        <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
-                                                Stock Code</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
-                                                Product Name</th>
-                                                <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
-                                                Unit Of Measurement</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
-                                               Quantity</th>
-                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($stocks as $stock)
-                                        <tr>
-                                        <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{$stock->id}}</p>
-                                        </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="{{ asset('assets') }}/img/team-2.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg"
-                                                            alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{$stock->name}}</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{$stock->quantity}}</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{$stock->unit_of_measurement}}</p>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <table class="table align-items-center mb-0">
+    <thead>
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Stock ID</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Product Name</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Quantity</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Unit Of Measurement</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Selling Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($stocks as $stock)
+        <tr>
+            <td>
+                <p class="text-xs font-weight-bold mb-0">{{$stock->id}}</p>
+            </td>
+            <td>
+                <div class="d-flex px-2 py-1">
+                    <div>
+                        <!-- Display your product image here -->
+                        <img src="{{ asset('assets') }}/img/team-2.jpg"
+                            class="avatar avatar-sm me-3 border-radius-lg" alt="product-image">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$stock->name}}</h6>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold mb-0">{{$stock->quantity}}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold mb-0">{{$stock->unit_of_measurement}}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold mb-0">{{$stock->selling_price}}</p>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ class StockController extends Controller
     {
         $stocks = DB::table('stocks')
         ->leftJoin('products', 'stocks.product_id', '=', 'products.id')
-        ->select('products.name','products.unit_of_measurement', 'stocks.quantity','stocks.id')
+        ->select('products.name','products.unit_of_measurement','products.selling_price','stocks.quantity','stocks.id')
         ->orderBy('products.id', 'desc') // Add this line to order by id in descending order
         ->get();
         return view("pages.view-stock")->with("stocks",$stocks);

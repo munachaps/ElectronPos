@@ -57,31 +57,20 @@ class ProductController extends Controller
             'barcode' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
             'unit_of_measurement' => 'required|numeric',
             'category_id' => 'required|integer',
             'quantity' => 'required|string',
             'product_status' => 'required|string|in:active,not_active',
         ]);
 
-        $markup = $request->input('markup'); // Assuming 'markup' is sent in the request
-        $costPrice = $request->input('price'); // Assuming 'price' represents cost price
-
-        if (!is_null($markup) && !is_null($costPrice)) {
-            // Calculate the selling price based on the markup percentage
-            $sellingPrice = $costPrice + ($costPrice * ($markup / 100));
-        
-        } else {
-            // Handle the case where markup or cost price is not provided
-            // You can add error handling or default values here if needed
-            $sellingPrice = null;
-        }
 
         $product = new Product([
             'name' => $validatedData['name'],
             'barcode' => $validatedData['barcode'],
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
-            'selling_price' => $sellingPrice,
+            'selling_price' =>$validatedData['selling_price'],
             'unit_of_measurement' => $validatedData['unit_of_measurement'],
             'category_id' => $validatedData['category_id'],
             'quantity' => $validatedData['quantity'],
@@ -90,7 +79,6 @@ class ProductController extends Controller
         
         //Save the product to the database and redirect to the dashboard
         $product->save();
-        
         //stock module add the item and then save it as stock
         $stock = new Stock([
             'product_id' => $product->id,
@@ -99,7 +87,8 @@ class ProductController extends Controller
 
         //save the stock
         $stock->save();
-        return view('pages.dashboard');
+        return redirect()->back()->with('message', 'Product has been added successfully');
+
     }
 
     /**

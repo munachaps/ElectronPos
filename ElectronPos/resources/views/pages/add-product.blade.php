@@ -150,7 +150,7 @@ $(document).ready(function(){
         </div>
         <div class="mb-3 col-md-12">
             <label for="quantity">Quantity</label>
-            <textarea class="form-control border border-2 p-2" name="quantity" rows="4" cols="50" required></textarea>
+            <input class="form-control border border-2 p-2" name="quantity" rows="4" cols="50" required>
             @error('quantity')
                 <p class="text-danger inputerror">{{ $message }}</p>
             @enderror

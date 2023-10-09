@@ -7,7 +7,8 @@ use Auth;
 use App\Models\Product;
 use App\Models\Cattegory;
 use App\Models\User;
-use App\Models\Customer;;
+use App\Models\Customer;
+use App\Models\Supplier;
 
 class DashboardController extends Controller
 {
@@ -21,8 +22,9 @@ class DashboardController extends Controller
         $numberOfProducts = Product::all()->count();
         $numberOfCustomers = Customer::all()->count();
         $numberOfCattegories = Cattegory::all()->count();
+        $numberOfSuppliers = Supplier::all()->count();
         $users = User::all()->count();
         return view('dashboard.index')->with("numberOfProducts",$numberOfProducts)
-        ->with("users",$users)->with("numberOfCustomers",$numberOfCustomers)->with("numberOfCattegories",$numberOfCattegories);
+        ->with("users",$users)->with("numberOfCustomers",$numberOfCustomers)->with("numberOfCattegories",$numberOfCattegories)->with("numberOfSuppliers",$numberOfSuppliers);
     }
 }

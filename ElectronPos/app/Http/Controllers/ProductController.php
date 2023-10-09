@@ -63,11 +63,25 @@ class ProductController extends Controller
             'product_status' => 'required|string|in:active,not_active',
         ]);
 
+        $markup = $request->input('markup'); // Assuming 'markup' is sent in the request
+        $costPrice = $request->input('price'); // Assuming 'price' represents cost price
+
+        if (!is_null($markup) && !is_null($costPrice)) {
+            // Calculate the selling price based on the markup percentage
+            $sellingPrice = $costPrice + ($costPrice * ($markup / 100));
+        
+        } else {
+            // Handle the case where markup or cost price is not provided
+            // You can add error handling or default values here if needed
+            $sellingPrice = null;
+        }
+
         $product = new Product([
             'name' => $validatedData['name'],
             'barcode' => $validatedData['barcode'],
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
+            'selling_price' => $sellingPrice,
             'unit_of_measurement' => $validatedData['unit_of_measurement'],
             'category_id' => $validatedData['category_id'],
             'quantity' => $validatedData['quantity'],
@@ -82,7 +96,7 @@ class ProductController extends Controller
             'product_id' => $product->id,
             'quantity' => $validatedData['quantity'], // Adjust as needed
         ]);
-        
+
         //save the stock
         $stock->save();
         return view('pages.dashboard');

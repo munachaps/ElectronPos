@@ -9,20 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function viewStock()
     {
-        //$stock = Stock::orderBy("id", "asc")->get();
         $stocks = DB::table('stocks')
         ->leftJoin('products', 'stocks.product_id', '=', 'products.id')
         ->select('products.name','products.unit_of_measurement', 'stocks.quantity','stocks.id')
@@ -30,10 +23,8 @@ class StockController extends Controller
         ->get();
         return view("pages.view-stock")->with("stocks",$stocks);
     }
+  
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //

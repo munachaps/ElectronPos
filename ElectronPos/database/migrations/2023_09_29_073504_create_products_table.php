@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('barcode');
             $table->text('description');
             $table->decimal('price', 10, 2);
+            $table->decimal('selling_price', 10, 2); // New column for selling price
             $table->decimal('unit_of_measurement', 10, 2);
             $table->integer('quantity');
             //Correct the foreign key definition

@@ -1,5 +1,20 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Bind the event listener to both costPrice and markup input fields
+    $("#costPrice, #sellingPrice").on("input", function() {
+    var costPrice = parseFloat($('#costPrice').val());
+    var sellingPrice = parseFloat($('#sellingPrice').val());
+    if (!isNaN(costPrice) && !isNaN(sellingPrice)) {
+        var markup = ((sellingPrice - costPrice) / costPrice) * 100;
+        var roundedMarkup = markup.toFixed(3);
+        $('#viewMarkup').val(roundedMarkup);
+    } else {
+    }
+  });
+});
+</script>
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
-
     <x-navbars.sidebar activePage="user-profile"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
@@ -98,9 +113,23 @@
             @enderror
         </div>
         <div class="mb-3 col-md-6">
-            <label class="form-label">Price</label>
-            <input type="number" name="price" class="form-control border border-2 p-2" required>
+            <label class="form-label">Cost Price</label>
+            <input type="number" name="price" id = 'costPrice' class="form-control border border-2 p-2" required>
             @error('price')
+                <p class="text-danger inputerror">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Markup %</label>
+            <input type="number" name="markup" id = 'viewMarkup' class="form-control border border-2 p-2" required readonly>
+            @error('markup')
+                <p class="text-danger inputerror">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Selling Price</label>
+            <input type="number" name="selling_price" id = 'sellingPrice' class="form-control border border-2 p-2" required>
+            @error('selling_price')
                 <p class="text-danger inputerror">{{ $message }}</p>
             @enderror
         </div>

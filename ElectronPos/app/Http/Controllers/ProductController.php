@@ -73,14 +73,16 @@ class ProductController extends Controller
             'quantity' => $validatedData['quantity'],
             'product_status' => $validatedData['product_status'],
         ]);
-        // Save the product to the database and redirect to the dashboard
+        
+        //Save the product to the database and redirect to the dashboard
         $product->save();
-
-        //stock
+        
+        //stock module add the item and then save it as stock
         $stock = new Stock([
             'product_id' => $product->id,
             'quantity' => $validatedData['quantity'], // Adjust as needed
         ]);
+        
         //save the stock
         $stock->save();
         return view('pages.dashboard');

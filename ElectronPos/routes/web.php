@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/view-cattegories', [CattegoryController::class, 'viewCattegories'])->name('view-cattegories');
 	Route::get('/view-suppliers', [SupplierController::class, 'viewSuppliers'])->name('view-suppliers');
 	Route::get('/create-customers', [CustomerController::class, 'create'])->name('create-customers');
+	Route::get('/view-stock', [StockController::class, 'viewStock'])->name('view-stock');
 	Route::get('/submit-customers', [CustomerController::class, 'create'])->name('submit-customers');
 	Route::get('/create-suppliers', [SupplierController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-supplier', [SupplierController::class, 'store'])->name('submit-supplier');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
@@ -19,11 +20,15 @@ class StockController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function viewStock()
     {
-        //
-
-        return view("pages.create-stock");
+        //$stock = Stock::orderBy("id", "asc")->get();
+        $stocks = DB::table('stocks')
+        ->leftJoin('products', 'stocks.product_id', '=', 'products.id')
+        ->select('products.name', 'stocks.quantity')
+        ->orderBy('products.id', 'desc') // Add this line to order by id in descending order
+        ->get();
+        return view("pages.view-stock")->with("stocks",$stocks);
     }
 
     /**

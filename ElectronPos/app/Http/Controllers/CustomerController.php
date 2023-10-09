@@ -39,9 +39,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {    
-
             $user = Auth::user()->id;
-
             $customer = Customer::create([
             'customer_name' => $request->customer_name,
             'customer_address' => $request->customer_address,

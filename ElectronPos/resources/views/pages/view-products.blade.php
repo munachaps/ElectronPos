@@ -24,6 +24,10 @@
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder ">
                                                 Product Name</th>
+                                                <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                               Cattegory Name</th>
+    
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
                                                 Description</th>
@@ -66,6 +70,9 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{$product->name}}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
+                                                <h6 class="mb-0 text-sm">{{$product->cattegory_name}}</h6>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
                                                 <h6 class="mb-0 text-sm">{{$product->description}}</h6>
                                             </td>
                                             <td class="align-middle text-center">
@@ -90,10 +97,6 @@
                                             <td>
                                                 <a href="" class = "btn btn-info btn-link">Delete</a>
                                             </td>  
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">{{$product->username}}</span>
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

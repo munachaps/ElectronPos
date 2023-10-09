@@ -1,10 +1,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    // Bind the event listener to both costPrice and markup input fields
+    //Bind the event listener to both costPrice and markup input fields
     $("#costPrice, #sellingPrice").on("input", function() {
-    var costPrice = parseFloat($('#costPrice').val());
-    var sellingPrice = parseFloat($('#sellingPrice').val());
+    const costPrice = parseFloat($('#costPrice').val());
+    const sellingPrice = parseFloat($('#sellingPrice').val());
     if (!isNaN(costPrice) && !isNaN(sellingPrice)) {
         var markup = ((sellingPrice - costPrice) / costPrice) * 100;
         var roundedMarkup = markup.toFixed(1);

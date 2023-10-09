@@ -7,7 +7,7 @@ $(document).ready(function(){
     var sellingPrice = parseFloat($('#sellingPrice').val());
     if (!isNaN(costPrice) && !isNaN(sellingPrice)) {
         var markup = ((sellingPrice - costPrice) / costPrice) * 100;
-        var roundedMarkup = markup.toFixed(3);
+        var roundedMarkup = markup.toFixed(1);
         $('#viewMarkup').val(roundedMarkup);
     } else {
     }

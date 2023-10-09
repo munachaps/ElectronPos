@@ -29,7 +29,10 @@
                                                 Description</th>
                                                 <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                Price</th>
+                                                Cost Price</th>
+                                                <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                                Selling Price</th>
                                                 <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
                                                 Quantity</th>
@@ -71,7 +74,11 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span
-                                                    class="text-secondary text-xs font-weight-bold">{{$product->quantity}}</span>
+                                                    class="text-secondary text-xs font-weight-bold">{{$product->price}}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{$product->selling_price}}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span

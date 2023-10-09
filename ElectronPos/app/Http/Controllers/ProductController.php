@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Stock;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cattegory;
@@ -51,22 +52,38 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $user = Auth::user();
-        $product = Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'barcode' => $request->barcode,
-            'price' => $request->price,
-            'category_id' => $request->cattegory_id,
-            'user_id' => $user->id,
-            'quantity' => $request->quantity,
-            'status' => $request->status
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'barcode' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'unit_of_measurement' => 'required|numeric',
+            'category_id' => 'required|integer',
+            'quantity' => 'required|string',
+            'product_status' => 'required|string|in:active,not_active',
         ]);
-        
-        if (!$product) {
-            return redirect()->back()->with('error', 'Sorry, there a problem while creating product.');
-        }
-        return redirect()->route('dashboard')->with('success', 'Success, you product have been created.');
+
+        $product = new Product([
+            'name' => $validatedData['name'],
+            'barcode' => $validatedData['barcode'],
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'unit_of_measurement' => $validatedData['unit_of_measurement'],
+            'category_id' => $validatedData['category_id'],
+            'quantity' => $validatedData['quantity'],
+            'product_status' => $validatedData['product_status'],
+        ]);
+        // Save the product to the database and redirect to the dashboard
+        $product->save();
+
+        //stock
+        $stock = new Stock([
+            'product_id' => $product->id,
+            'quantity' => $validatedData['quantity'], // Adjust as needed
+        ]);
+        //save the stock
+        $stock->save();
+        return view('pages.dashboard');
     }
 
     /**

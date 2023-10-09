@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreign('stock_id')->references('id')->on('products');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('quantity');
             $table->timestamps();
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
     /**

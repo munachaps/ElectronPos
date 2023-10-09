@@ -18,6 +18,9 @@
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
+                                        <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                                Stock Code</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder ">
                                                 Product Name</th>
@@ -30,6 +33,9 @@
                                     <tbody>
                                         @foreach($stocks as $stock)
                                         <tr>
+                                        <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{$stock->id}}</p>
+                                        </td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>

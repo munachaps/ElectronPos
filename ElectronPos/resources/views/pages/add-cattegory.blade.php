@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method='POST' action='{{ route('submit-cattegory') }}'>
+                        <form method='POST' action="{{ route('submit-cattegory') }}">
                             @csrf
                             <div class="row">
                                 
@@ -87,11 +87,9 @@
                             </div>
                             <button type="submit" class="btn bg-gradient-dark">Submit</button>
                         </form>
-
                     </div>
                 </div>
             </div>
-
         </div>
         <x-footers.auth></x-footers.auth>
     </div>

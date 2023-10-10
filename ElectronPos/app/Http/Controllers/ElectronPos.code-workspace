@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../../../UserVerificationProject copy/UserVerificationProject copy"
+		},
+		{
+			"path": "../../../../laravel-pos"
 		}
 	],
 	"settings": {}

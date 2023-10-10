@@ -17,6 +17,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PosController;
+use App\Http\Controllers\OrdersController;
 
 Route::get('/', [DashboardController::class, 'welcome']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/submit-supplier', [SupplierController::class, 'store'])->name('submit-supplier');
 	Route::post('/submit-customer', [CustomerController::class, 'store'])->name('submit-customer');
 	Route::get('/view-customers', [CustomerController::class, 'viewAllCustomers'])->name('view-customers');
+	Route::get('/view-orders', [OrdersController::class, 'index'])->name('view-orders');
 	Route::get('/view-reports', [ReportController::class, 'create'])->name('view-reports');
 	Route::get('/search-product', [ProductController::class, 'searchProductByName'])->name('search-product');
 	//Route::get('/get-product/{id}',[PosController::class, 'create']);

@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap POS System</title>
+    <title>Electron Point Of Sale</title>
     <!-- Add Bootstrap CSS link here -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
             <!-- Search Product Input -->
+            <form method="POST" action="{{ route('search-product') }}">
+            @csrf
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for a product" aria-label="Search for a product" aria-describedby="search-button">
+                <input type="text" class="form-control" placeholder="Search for a product" aria-label="Search for a product" aria-describedby="search-button" id = "searchProduct">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="search-button">Search</button>
                 </div>
             </div>
+            </form>
         </div>
+        <script>
+            $(document).ready(function(){
+                $("#searchProduct").on('keyup',function(){
+                    const productName =  $(this).val();
+                    console.log(productName); 
+                });
+            });
+            </script>
         <div class="col-md-6">
-            <!-- Buttons -->
-            <div class="float-right">
+            <!-- Buttons (Aligned to the Right) -->
+            <div class="d-flex justify-content-end">
                 <button class="btn btn-success mr-2">Add to Cart</button>
                 <button class="btn btn-danger">Checkout</button>
             </div>

@@ -62,7 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/submit-customer', [CustomerController::class, 'store'])->name('submit-customer');
 	Route::get('/view-customers', [CustomerController::class, 'viewAllCustomers'])->name('view-customers');
 	Route::get('/view-reports', [ReportController::class, 'create'])->name('view-reports');
-	Route::post('/search-product',[PosController::class, 'create'])->name('search-products');
+	Route::get('/search-product', [ProductController::class, 'searchProductByName'])->name('search-product');
+	//Route::get('/get-product/{id}',[PosController::class, 'create']);
 	Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
 	Route::get('rtl', function () {
 		return view('pages.rtl');

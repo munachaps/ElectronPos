@@ -27,10 +27,25 @@ class ProductController extends Controller
         return view('pages.view-products')->with("products",$products);
     }
 
+    public function searchProductByName(Request $request)
+    {
+        $productName = $request->input('name');
+        $products = Product::where('name', 'like', "%$productName%")->get();
+        return view('pages.add-pos', ['products' => $products]);
+    }
+
     public function editProduct($id){        
         $products = Product::find($id);
         $cattegories = Cattegory::all();
         return view("pages.update-product")->with("products",$products)->with("cattegories",$cattegories);
+    }
+
+    public function getProductById($id){
+        $product = Product::find($id);
+        if ($product) {
+            return response()->json($product);
+        }
+        return response()->json(['error' => 'Product not found'], 404);
     }
 
     public function deleteProduct($id){

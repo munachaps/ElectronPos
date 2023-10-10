@@ -16,6 +16,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\PosController;
 
 Route::get('/', [DashboardController::class, 'welcome']);
 //Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
@@ -56,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/create-customers', [CustomerController::class, 'create'])->name('create-customers');
 	Route::get('/view-stock', [StockController::class, 'viewStock'])->name('view-stock');
 	Route::get('/submit-customers', [CustomerController::class, 'create'])->name('submit-customers');
+	Route::get('/sell-product', [PosController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SupplierController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-supplier', [SupplierController::class, 'store'])->name('submit-supplier');
 	Route::post('/submit-customer', [CustomerController::class, 'store'])->name('submit-customer');

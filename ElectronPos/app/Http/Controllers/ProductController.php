@@ -83,7 +83,6 @@ class ProductController extends Controller
             'product_status' => 'required|string|in:active,not_active',
         ]);
 
-
         $product = new Product([
             'name' => $validatedData['name'],
             'barcode' => $validatedData['barcode'],

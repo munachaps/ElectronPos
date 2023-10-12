@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "../../../../laravel-pos"
+		},
+		{
+			"path": "../../../../WeChoose2Care"
 		}
 	],
 	"settings": {}

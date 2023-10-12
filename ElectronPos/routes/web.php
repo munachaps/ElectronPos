@@ -18,6 +18,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\CartController;
+
 
 Route::get('/', [DashboardController::class, 'welcome']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -67,6 +69,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/search-product', [ProductController::class, 'searchProductByName'])->name('search-product');
 	//Route::get('/get-product/{id}',[PosController::class, 'create']);
 	Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
+	Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/change-qty', [CartController::class, 'changeQty']);
+    Route::delete('/cart/delete', [CartController::class, 'delete']);
+    Route::delete('/cart/empty', [CartController::class, 'empty']);
 	Route::get('rtl', function () {
 		return view('pages.rtl');
 	})->name('rtl');

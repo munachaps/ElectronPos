@@ -63,9 +63,10 @@
         <!-- Second Column: Search -->
         <div class="col-md-6">
             <h3>Search</h3>
-            <form class="form-inline">
+            <form action="{{ route('search-cart-product') }}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search Products">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search Products" name="search_product">
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>

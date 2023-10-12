@@ -20,6 +20,14 @@ class CartController extends Controller
         return view('pages.cart.index')->with("customers",$customers);
     }
 
+    public function searchCartProduct(Request $request){
+
+
+        dd($request->all());
+
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([

@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index(Request $request)
     {
+
+        $customers = Customer::orderBy('id', 'desc')->get();
         if ($request->wantsJson()) {
             return response(
                 $request->user()->cart()->get()
             );
         }
-        return view('pages.cart.index');
+        return view('pages.cart.index')->with("customers",$customers);
     }
 
     public function store(Request $request)

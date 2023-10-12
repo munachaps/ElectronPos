@@ -6,6 +6,24 @@
 <body>
 <div class="container" style="margin-top: 30px;">
     <div class="row">
+        <!-- Top Section: Scan Barcode and Walk-In Customer -->
+        <div class="col-md-12">
+            <h3>Scan Barcode and Walk-In Customer</h3>
+            <div class="form-group">
+                <label for="barcodeInput">Scan Barcode:</label>
+                <input type="text" class="form-control" id="barcodeInput" placeholder="Enter barcode">
+            </div>
+            <div class="form-group">
+                <label for="customerSelect">Select Customer:</label>
+                <select class="form-control" id="customerSelect" name="customer_id">
+                    @foreach ($customers as $customer)
+                        <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <!-- First Column: Product Table -->
         <div class="col-md-6">
             <h3>Products</h3>

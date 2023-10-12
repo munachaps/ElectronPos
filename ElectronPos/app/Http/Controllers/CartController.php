@@ -57,32 +57,26 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'barcode' => 'required|exists:products,barcode',
-        ]);
-        $barcode = $request->barcode;
-        $product = Product::where('barcode', $barcode)->first();
-        $cart = $request->user()->cart()->where('barcode', $barcode)->first();
-        if ($cart) {
-            // check product quantity
-            if ($product->quantity <= $cart->pivot->quantity) {
-                return response([
-                    'message' => 'Product available only: ' . $product->quantity,
-                ], 400);
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity');
+    
+        $product = Product::find($productId);
+    
+        if ($product) {
+            if ($product->stock_quantity >= $quantity) {
+                // Update the stock quantity
+                $product->stock_quantity -= $quantity;
+                $product->save();
+    
+                // Create an order record or do whatever you need for the sale
+    
+                return redirect('/sell')->with('success', 'Product sold successfully.');
+            } else {
+                return redirect('/sell')->with('error', 'Insufficient stock.');
             }
-            // update only quantity
-            $cart->pivot->quantity = $cart->pivot->quantity + 1;
-            $cart->pivot->save();
         } else {
-            if ($product->quantity < 1) {
-                return response([
-                    'message' => 'Product out of stock',
-                ], 400);
-            }
-            $request->user()->cart()->attach($product->id, ['quantity' => 1]);
+            return redirect('/sell')->with('error', 'Product not found.');
         }
-
-        return response('', 204);
     }
 
     public function changeQty(Request $request)

@@ -21,4 +21,10 @@ class Product extends Model
         'selling_price',
         'markup'
     ];
+
+
+    public function stock()
+{
+    return $this->hasOne(Stock::class);
+}
 }

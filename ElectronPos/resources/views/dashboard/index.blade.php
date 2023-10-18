@@ -71,14 +71,13 @@
                                 <i class="material-icons opacity-10">weekend</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Number Of Supplier</p>
-                               
+                                <p class="text-sm mb-0 text-capitalize">Number Of Suppliers</p>
+                                {{$numberOfSuppliers}}</p>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
                             <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
-                            {{$numberOfSuppliers}}</p>
                         </div>
                     </div>
                 </div>

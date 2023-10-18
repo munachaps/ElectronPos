@@ -6,26 +6,15 @@
 <body>
 <div class="container" style="margin-top: 30px;">
     <div class="row">
-        <!-- Top Section: Scan Barcode and Walk-In Customer -->
+        <!-- Search Product Section -->
         <div class="col-md-12">
-            <h3>Scan Barcode and Walk-In Customer</h3>
-            <div class="form-group">
-                <label for="barcodeInput">Scan Barcode:</label>
-                <input type="text" class="form-control" id="barcodeInput" placeholder="Enter barcode">
-            </div>
-            <div class="form-group">
-                <label for="customerSelect">Select Customer:</label>
-                <select class="form-control" id="customerSelect" name="customer_id">
-                    @foreach ($customers as $customer)
-                        <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <h3>Search Product</h3>
+            <input type="text" class="form-control" id="searchProduct" placeholder="Search product">
         </div>
     </div>
     <div class="row">
-        <!-- First Column: Product Table -->
-        <div class="col-md-6">
+        <!-- Product Table -->
+        <div class="col-md-9">
             <h3>Products</h3>
             <table class="table table-bordered">
                 <thead>
@@ -53,24 +42,20 @@
                     <!-- Add more product rows as needed -->
                 </tbody>
             </table>
-
-            <!-- Cancel and Submit Buttons -->
-            <div class="text-center">
-                <button class="btn btn-secondary">Cancel</button>
-                <button class="btn btn-primary">Submit</button>
-            </div>
         </div>
-        <!-- Second Column: Search -->
-        <div class="col-md-6">
-            <h3>Search</h3>
-            <form action="{{ route('search-cart-product') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search Products" name="search_product">
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-            <!-- The search results can be displayed here -->
+        <!-- Payment Section -->
+        <div class="col-md-3">
+            <div class="text-right">
+                <h3>Payment</h3>
+                <!-- Payment form or buttons go here -->
+                <button class="btn btn-success">Pay</button>
+            </div>
+            <!-- Subtotal and Tax Section -->
+            <div class="text-right mt-3">
+                <p><strong>Subtotal: $99.99</strong></p>
+                <p><strong>Tax (7%): $7.00</strong></p>
+                <p><strong>Total: $106.99</strong></p>
+            </div>
         </div>
     </div>
 </div>

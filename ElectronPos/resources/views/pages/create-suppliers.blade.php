@@ -77,7 +77,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="customer_name">Suppliers Name</label>
-                            <input type="text" name="customer_name" id="customer_name" class="form-control border border-2 p-2" required>
+                            <input type="text" name="supplier_name" id="suppluer_name" class="form-control border border-2 p-2" required>
                         </div>
                         <div class="form-group">
                             <label for="code">Suppliers Code</label>
@@ -85,22 +85,22 @@
                         </div>
                         <div class="form-group">
                             <label for="customer_taxnumber">Suppliers Tax Number</label>
-                            <input type="text" name="customer_taxnumber" id="customer_taxnumber" class="form-control border border-2 p-2" required>
+                            <input type="text" name="supplier_taxnumber" id="supplier_taxnumber" class="form-control border border-2 p-2" required>
                         </div>
 
                         <div class="form-group">
                             <label for="customer_city">Suppliers City</label>
-                            <input type="text" name="customer_city" id="customer_city" class="form-control border border-2 p-2" required>
+                            <input type="text" name="supplier_city" id="customer_city" class="form-control border border-2 p-2" required>
                         </div>
 
                         <div class="form-group">
                             <label for="customer_address">Suppliers Address</label>
-                            <input type="text" name="customer_address" id="customer_address" class="form-control border border-2 p-2" required>
+                            <input type="text" name="supplier_address" id="customer_address" class="form-control border border-2 p-2" required>
                         </div>
 
                         <div class="form-group">
                             <label for="customer_phonenumber">Suppliers Phone Number</label>
-                            <input type="text" name="customer_phonenumber" id="customer_phonenumber" class="form-control border border-2 p-2" required>
+                            <input type="text" name="supplier_phonenumber" id="customer_phonenumber" class="form-control border border-2 p-2" required>
                         </div>
                         <div class="form-group">
                             <label for="personal_care">Status</label>

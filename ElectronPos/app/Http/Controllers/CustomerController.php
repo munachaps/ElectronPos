@@ -34,16 +34,17 @@ class CustomerController extends Controller
         return view("pages.create-customer");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {    
             $user = Auth::user()->id;
             $customer = Customer::create([
+            'code' => $request->code,
             'customer_name' => $request->customer_name,
             'customer_address' => $request->customer_address,
-            'customer_phonenumber' => $request->customer_phone,
+            'customer_phonenumber' => $request->customer_phonenumber,
+            'customer_taxnumber' => $request->customer_taxnumber,
+            'customer_city' => $request->customer_city,
+            'customer_address' => $request->customer_address,
             'user_id' => $user,
         ]);
         

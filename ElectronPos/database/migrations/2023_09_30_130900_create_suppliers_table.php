@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('supplier_name');
-            $table->string('suppliers+code');
+            $table->string('code');
             $table->unsignedBigInteger('user_id');
             $table->string('supplier_taxnumber')->unique();
             $table->string('supplier_city')->unique();

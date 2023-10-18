@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/submit-cattegory', [CattegoryController::class, 'store'])->name('submit-cattegory');
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SuppliersController::class, 'create'])->name('create-suppliers');
-	Route::post('/submit-suppliers', [SuppliersController::class, 'store'])->name('submit-suppliers');
+	Route::post('/submit-suppliers', [SupplierController::class, 'store'])->name('submit-suppliers');
 	Route::post('/submit-sale', [SalesController::class, 'store'])->name('submit-sale');
 	Route::get('/create-employee', [EmployeeController::class, 'create'])->name('create-employee');
 	Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('view-products');
@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/view-suppliers', [SupplierController::class, 'viewSuppliers'])->name('view-suppliers');
 	Route::get('/create-customers', [CustomerController::class, 'create'])->name('create-customers');
 	Route::get('/view-stock', [StockController::class, 'viewStock'])->name('view-stock');
-	Route::post('/submit-customers', [CustomerController::class, 'create'])->name('submit-customers');
+	Route::post('/submit-customers', [CustomerController::class, 'store'])->name('submit-customers');
 	Route::get('/sell-product', [PosController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SupplierController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-supplier', [SupplierController::class, 'store'])->name('submit-supplier');

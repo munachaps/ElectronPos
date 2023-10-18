@@ -11,47 +11,28 @@ class CartController extends Controller
     public function index(Request $request)
     {
 
-        $customers = Customer::orderBy('id', 'desc')->get();
+        $products = Product::all();
+        $customers = Customer::all();
+        return view('pages.cart.index')->with("products",$products)->with("customers",$customers);
+
+        /*$customers = Customer::orderBy('id', 'desc')->get();
         if ($request->wantsJson()) {
             return response(
                 $request->user()->cart()->get()
             );
         }
-        return view('pages.cart.index')->with("customers",$customers);
+        return view('pages.cart.index')->with("customers",$customers);*/
     }
 
     public function searchCartProduct(Request $request){
 
-        $request->validate([
-            'search_product' => 'required|exists:products,barcode',
+        $customers = Customer::all();
+        $searchTerm = $request->input('search_product');
+        $products = Product::where('name', 'like', "%$searchTerm%")->get();
+        return view('pages.cart.index', [
+            'products' => $products,
+            'customers'=>$customers
         ]);
-        
-        $barcode = $request->barcode;
-
-        $product = Product::where('barcode', $barcode)->first();
-        $cart = $request->user()->cart()->where('barcode', $barcode)->first();
-        if ($cart) {
-            // check product quantity
-            if ($product->quantity <= $cart->pivot->quantity) {
-                return response([
-                    'message' => 'Product available only: ' . $product->quantity,
-                ], 400);
-            }
-            // update only quantity
-            $cart->pivot->quantity = $cart->pivot->quantity + 1;
-            $cart->pivot->save();
-        } else {
-            if ($product->quantity < 1) {
-                return response([
-                    'message' => 'Product out of stock',
-                ], 400);
-            }
-            $request->user()->cart()->attach($product->id, ['quantity' => 1]);
-        }
-
-        return response('', 204);
-   
-
     }
 
 

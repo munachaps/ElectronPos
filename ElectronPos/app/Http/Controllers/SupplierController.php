@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -40,8 +42,23 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //dum the data and see if it sending to the controller
-        dd($request->all());
+        //dump the data and see if it sending to the controller
+        $user = Auth::user()->id;
+        $supplier = Supplier::create([
+        'code' => $request->code,
+        'supplier_name' => $request->supplier_name,
+        'supplier_address' => $request->supplier_address,
+        'supplier_phonenumber' => $request->supplier_phonenumber,
+        'supplier_taxnumber' => $request->supplier_taxnumber,
+        'supplier_city' => $request->supplier_city,
+        'customer_address' => $request->supplier_address,
+        'user_id' => $user,
+    ]);
+    
+    if (!$supplier) {
+        return redirect()->back()->with('error', 'Sorry, there a problem while creating a supplier.');
+    }
+    return redirect()->route('dashboard')->with('success', 'Success, your supplier have been created.');
     }
 
     /**

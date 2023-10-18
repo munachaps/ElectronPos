@@ -12,11 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-     //view all the products
+    
+    //view all the products
     public function viewProducts()
     {
         //$products = Product::orderBy("id", "asc")->get();

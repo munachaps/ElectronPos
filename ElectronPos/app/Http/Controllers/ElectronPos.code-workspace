@@ -4,19 +4,7 @@
 			"path": "../../.."
 		},
 		{
-			"path": "../../../../pia/laravel-pos-master"
-		},
-		{
-			"path": "../../../../ICRITHealthCare/ICRITHealthCare"
-		},
-		{
-			"path": "../../../../UserVerificationProject copy/UserVerificationProject copy"
-		},
-		{
 			"path": "../../../../laravel-pos"
-		},
-		{
-			"path": "../../../../WeChoose2Care"
 		}
 	],
 	"settings": {}

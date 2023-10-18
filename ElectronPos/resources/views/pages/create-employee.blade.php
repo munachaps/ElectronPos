@@ -35,7 +35,7 @@
                                     <a class="btn btn-info" href="{{ route('view-employees') }}"
                                         role="tab" aria-selected="true">
                                         <i class="material-icons text-lg position-relative"></i>
-                                        <span class="ms-1">View Employees</span>
+                                        <span class="ms-1">View Users</span>
                                     </a>
                                 </li>
                             </ul>
@@ -46,7 +46,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-3">Create An Employee</h6>
+                                <h6 class="mb-3">Create A User</h6>
                             </div>
                         </div>
                     </div>
@@ -76,22 +76,51 @@
                         <form method='POST' action='{{ route('submit-cattegory') }}'>
                             @csrf
                             <div class="row">
-                                
                                 <div class="mb-3 col-md-12">
-                                    <label class="form-label">Cattegory Name</label>
+                                    <label class="form-label">First Name</label>
                                     <input type="text" name="name" class="form-control border border-2 p-2" required>
                                     @error('name')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="Staff_Id">Select Employee Type</label>
-                                <select name="cattegory_id" class="form-control border border-2 p-2" required>
-                                        <option value="">Admin</option>
-                                        <option value="">Cashier</option>
-                                </select>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="name" class="form-control border border-2 p-2" required>
+                                    @error('last_name')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="name" class="form-control border border-2 p-2" required>
+                                    @error('password')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" name="name" class="form-control border border-2 p-2" required>
+                                    @error('confirm_password')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="personal_care">Status</label>
+                                <select name="product_status" id="personal_care" class="form-control border border-2 p-2" required>
+                                <option value="active">Active</option>
+                                <option value="not_active">Not Active</option>
+                                 </select>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Create Customer</button>
+                                </div>
                             <hr>
                             <button type="submit" class="btn bg-gradient-dark">Submit</button>
                         </form>

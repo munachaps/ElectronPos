@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/view-customers', [CustomerController::class, 'viewAllCustomers'])->name('view-customers');
 	Route::get('/view-orders', [OrdersController::class, 'index'])->name('view-orders');
 	Route::get('/view-reports', [ReportController::class, 'create'])->name('view-reports');
-	Route::get('/search-product', [ProductController::class, 'searchProductByName'])->name('search-product');
+	Route::post('/search-products', [ProductController::class, 'searchProductByName'])->name('search-products');
 	Route::post('/search-cart-product',[CartController::class, 'searchCartProduct'])->name('search-cart-product');
 	//Route::get('/get-product/{id}',[PosController::class, 'create']);
 	Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');

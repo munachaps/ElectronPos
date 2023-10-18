@@ -4,19 +4,61 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#searchProduct').keypress(function(e) {
+        if (e.key === 'Enter') {
+            // Prevent the default form submission behavior
+            e.preventDefault();
+            // Trigger the form submission
+            $('form').submit();
+        }
+    });
+});
+$('form').on('submit', function(e) {
+    e.preventDefault();
+    let productName = $('#searchProduct').val();
+
+    $.ajax({
+        url: '/search-product', // Replace with your actual endpoint
+        method: 'POST',
+        data: { product_name: productName },
+        success: function(response) {
+            // Clear the table
+            $('#searchResultsTable').empty();
+            // Populate the table with search results
+            $.each(response, function(index, product) {
+                let row = $('<tr>');
+                row.append($('<td>').text(product.name));
+                row.append($('<td>').text(product.quantity));
+                row.append($('<td>').text(product.price));
+                row.append($('<td>').text(product.name));
+                row.append($('<td>').html('<input type="number" class="form-control" value="1" min="1">'));
+                $('#searchResultsTable').append(row);
+            });
+        }
+    });
+});
+</script>
+</script>
 <div class="container" style="margin-top: 30px;">
-    <div class="row">
-        <!-- Search Product Section -->
-        <div class="col-md-12">
-            <h3>Search Product</h3>
-            <input type="text" class="form-control" id="searchProduct" placeholder="Search product">
+    <form action="{{ route('search-products') }}" method="POST">
+        @csrf
+        <div class="row">
+            <!-- Search Product Section -->
+            <div class="col-md-12">
+                <h3>Search Product</h3>
+                <input type="text" class="form-control" name="product_name" placeholder="Search product">
+            </div>
         </div>
-    </div>
+    </form>    
     <div class="row">
         <!-- Product Table -->
         <div class="col-md-9">
             <h3>Products</h3>
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="searchResultsTable">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -25,24 +67,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Your product data here -->
+                    @foreach ($results as $product)
                     <tr>
-                        <td>Product 1</td>
-                        <td>$19.99</td>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->price }}</td>
                         <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control" value="1" min="1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">+</button>
-                                    <button class="btn btn-danger" type="button">-</button>
-                                </div>
-                            </div>
+                            <input type="number" class="form-control" value="1" min="1">
                         </td>
                     </tr>
-                    <!-- Add more product rows as needed -->
+                    @endforeach
                 </tbody>
             </table>
-        </div>
+        </div>        
         <!-- Payment Section -->
         <div class="col-md-3">
             <div class="text-right">

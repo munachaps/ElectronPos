@@ -26,9 +26,11 @@ class ProductController extends Controller
 
     public function searchProductByName(Request $request)
     {
-        $productName = $request->input('name');
-        $products = Product::where('name', 'like', "%$productName%")->get();
-        return view('pages.add-pos', ['products' => $products]);
+        $query = $request->input('product_name');
+        $results = Product::where('name', 'like', "%$query%")->get();
+        return view('pages.cart.index')->with("results",$results);
+        //return response()->json($results);
+        /// return response()->json($results);
     }
 
     public function editProduct($id){        

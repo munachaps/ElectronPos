@@ -23,7 +23,7 @@ class PosController extends Controller
     public function create()
     {
         //Get the clients information
-        $clients = Customer::orderBy('rfc', 'DESC')->get();
+        $clients = Customer::orderBy('id', 'DESC')->get();
         //Get the products information
         $products = Product::orderBy('name', 'DESC')->get();
         //Total of sales today

@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SuppliersController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-suppliers', [SupplierController::class, 'store'])->name('submit-suppliers');
+	Route::get('/create-sales', [SalesController::class, 'index'])->name('create-sales');
 	Route::post('/submit-sale', [SalesController::class, 'store'])->name('submit-sale');
 	Route::get('/create-employee', [EmployeeController::class, 'create'])->name('create-employee');
 	Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('view-products');
@@ -70,7 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/search-cart-product',[CartController::class, 'searchCartProduct'])->name('search-cart-product');
 	//Route::get('/get-product/{id}',[PosController::class, 'create']);
 	Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
-	Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+	//sales controller (route to get the controller for sales)
+	Route::get('/sales', [SalesController::class, 'index'])->name('sales.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::post('/cart/change-qty', [CartController::class, 'changeQty']);
     Route::delete('/cart/delete', [CartController::class, 'delete']);

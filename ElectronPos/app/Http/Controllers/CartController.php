@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Sale;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(Request $request)
-    {
 
+    //calculating the sales for the day
+    public function index(Request $request)
+    
+    {
         //Get the clients information
-        $customers = Customer::orderBy('rfc', 'DESC')->get();
+        $customers = Customer::orderBy('id', 'DESC')->get();
         //Get the products information
         $products = Product::orderBy('name', 'DESC')->get();
         //Total of sales today
@@ -26,16 +29,8 @@ class CartController extends Controller
             'sales.create',
             compact('clients', 'products', 'totalSalesPerDay')
         );
-        return view('pages.cart.index')->with("products",$products)->with("customers",$customers)->with("totalSalesPerDay",$totalSalesPerDay);
-
-        /*$customers = Customer::orderBy('id', 'desc')->get();
-        if ($request->wantsJson()) {
-            return response(
-                $request->user()->cart()->get()
-            );
-        }
-        return view('pages.cart.index')->with("customers",$customers);*/
     }
+
 
     public function searchCartProduct(Request $request){
 

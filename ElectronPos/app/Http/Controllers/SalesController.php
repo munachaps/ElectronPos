@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sales;
+use App\Models\Product;
 use App\Models\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,16 +17,27 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        //get the data for the clients and the products..
+        $clients = Customer::orderBy('id', 'DESC')->get();
+        //Get the products information
+        $products = Product::orderBy('name', 'DESC')->get();
+        //Total of sales today
+        $totalSalesPerDay = 0;
+        $salesToday = Sales::select('total')->where('created', date('Y-m-d'))
+            ->get();
+        foreach ($salesToday as $sale) {
+            $totalSalesPerDay += $sale->total;
+        }
+
+        //return view for creating the sales....
+        return view(
+            'pages.sales.create',
+            compact('clients', 'products', 'totalSalesPerDay')
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-
-        //return all the customers to the front end and the products
         $customers = Customer::all();
         $products = DB::table('cattegories')
         ->leftJoin('products', 'cattegories.id', '=', 'products.category_id')

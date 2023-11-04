@@ -15,6 +15,8 @@ class SalesController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    //view for making the sales (view will return the total sales also to the blade file)
     public function index()
     {
         //get the data for the clients and the products..

@@ -28,7 +28,6 @@ class SalesController extends Controller
         foreach ($salesToday as $sale) {
             $totalSalesPerDay += $sale->total;
         }
-
         //return view for creating the sales....
         return view(
             'pages.sales.create',

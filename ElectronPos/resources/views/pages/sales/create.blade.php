@@ -45,7 +45,7 @@
                   <select id="rfc" name="rfc" class="form-control">
                     <option value="">Select Customer</option>
                     @foreach($clients as $client)
-                    <option value="{{ $client->rfc }}">{{ $client->name }}</option>
+                    <option value="{{ $client->rfc }}">{{ $client->customer_name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -89,7 +89,7 @@
                 <tbody id="products-table">
                   @foreach($products as $product)
                   <tr>
-                    <td>{{ $product->product_id }}</td>
+                    <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
                     <td>
                       <button class="btn btn-success btn-sm"

@@ -37,25 +37,37 @@ class SalesController extends Controller
         );
     }
 
-    public function create()
+    //make the sale and store the sale into the sales table
+    public function store(SaleRequest $request)
     {
-        $customers = Customer::all();
-        $products = DB::table('cattegories')
-        ->leftJoin('products', 'cattegories.id', '=', 'products.category_id')
-        ->leftJoin('users','products.user_id','=','users.id')
-        ->select('users.name as username','cattegories.cattegory_name as   category_name',
-        'products.name as productName',
-        'products.barcode as barcode','products.description as description',
-        'products.price as price','products.quantity as quantity','products.created_at as created')
-        ->get();
-        return view("pages.sell-product")->with("products",$products)->with("customers",$customers);
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $sale = Sales::create(
+            [
+                'total'   => $request->input('total'),
+                'rfc'     => $request->input('rfc'),
+                'id'      => $request->input('id'),
+                'created' => date('Y-m-d')
+            ]
+        );
+
+        if (isset($sale)) {
+            $productsArray = (array)json_decode($request->input('products'));
+            $completed = [];
+            //Get the products sales
+            foreach ($productsArray as $index) {
+                $cart = new Cart();
+                $cart->sale_id = $sale->sale_id;
+                $cart->product_id = $index->id;
+                $cart->amount = $index->amount;
+                $cart->created = date('Y-m-d');
+                $cart->save();
+                $completed[] = $cart;
+            }
+
+            if (count($productsArray) === count($completed)) {
+                return new Response($completed, 201);
+            }
+        }
+        return new Response('Cart was not filled', 500);
     }
 
     /**

@@ -11,9 +11,22 @@ class CartController extends Controller
     public function index(Request $request)
     {
 
-        $products = Product::all();
-        $customers = Customer::all();
-        return view('pages.cart.index')->with("products",$products)->with("customers",$customers);
+        //Get the clients information
+        $customers = Customer::orderBy('rfc', 'DESC')->get();
+        //Get the products information
+        $products = Product::orderBy('name', 'DESC')->get();
+        //Total of sales today
+        $totalSalesPerDay = 0;
+        $salesToday = Sale::select('total')->where('created', date('Y-m-d'))
+            ->get();
+        foreach ($salesToday as $sale) {
+            $totalSalesPerDay += $sale->total;
+        }
+        return view(
+            'sales.create',
+            compact('clients', 'products', 'totalSalesPerDay')
+        );
+        return view('pages.cart.index')->with("products",$products)->with("customers",$customers)->with("totalSalesPerDay",$totalSalesPerDay);
 
         /*$customers = Customer::orderBy('id', 'desc')->get();
         if ($request->wantsJson()) {

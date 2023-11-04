@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->unsignedBigInteger('sale_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedInteger('amount');
-            $table->primary(['sale_id', 'product_id']);
-            $table->foreign('sale_id')->references('sale_id')->on('sales')
-                ->onDelete('cascade');
-            $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
+        Schema::create('sales', function (Blueprint $table) {
+            $table->id('sale_id');
+            $table->unsignedFloat('total');
+            $table->string('rfc');
+            $table->unsignedBigInteger('id');
             $table->timestamps();
             $table->date('created')->nullable();
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('rfc')->references('id')->on('customers');
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_general_ci';
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('sales');
     }
 };

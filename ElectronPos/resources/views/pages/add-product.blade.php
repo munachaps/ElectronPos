@@ -156,12 +156,18 @@ $(document).ready(function(){
             @enderror
         </div>
         <div class="form-group">
-            <label for="product_status">Product Status</label>
-            <select name="product_status" id="product_status" class="form-control border border-2 p-2" required>
-                <option value="active">Active</option>
-                <option value="not_active">Not Active</option>
-            </select>
-        </div>
+            <fieldset>
+                <legend class="form-label">Product Status</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="product_status" value="Active" id="independently_mobile">
+                    <label class="form-check-label">Active</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="product_status" value="Inactive" id="mobility_with_support">
+                    <label class="form-check-label">Inactive</label>
+                </div>
+            </fieldset>
+        </div>  
     </div>
     <hr>
     <button type="submit" class="btn bg-gradient-dark">Submit</button>

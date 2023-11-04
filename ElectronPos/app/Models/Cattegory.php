@@ -11,4 +11,9 @@ class Cattegory extends Model
     protected $fillable = [
         'cattegory_name'
     ];
+
+     //This model groups 1 or N products
+     public function products() {
+        return $this->hasMany('App\Product');
+    }
 }

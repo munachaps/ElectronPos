@@ -29,8 +29,6 @@ class ProductController extends Controller
         $query = $request->input('product_name');
         $results = Product::where('name', 'like', "%$query%")->get();
         return view('pages.cart.index')->with("results",$results);
-        //return response()->json($results);
-        /// return response()->json($results);
     }
 
     public function editProduct($id){        
@@ -70,6 +68,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        //dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string',
             'barcode' => 'required|string',
@@ -79,7 +78,7 @@ class ProductController extends Controller
             'unit_of_measurement' => 'required|numeric',
             'category_id' => 'required|integer',
             'quantity' => 'required|string',
-            'product_status' => 'required|string|in:active,not_active',
+            'product_status' => 'required|string|in:active,inactive',
         ]);
 
         $product = new Product([
@@ -101,7 +100,6 @@ class ProductController extends Controller
             'product_id' => $product->id,
             'quantity' => $validatedData['quantity'], // Adjust as needed
         ]);
-
         //save the stock
         $stock->save();
         if (!$product) {
@@ -109,9 +107,7 @@ class ProductController extends Controller
         }
         return redirect()->route('view-products')->with('success', 'Success, your product has been created and added to stock');
         //return redirect()->back()->with('message', 'Product has been added successfully');
-
     }
-
     /**
      * Display the specified resource.
      */

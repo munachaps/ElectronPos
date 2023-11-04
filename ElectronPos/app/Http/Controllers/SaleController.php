@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pos;
+use App\Models\Sale;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PosController extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    
     public function index()
     {
         //
@@ -22,20 +21,7 @@ class PosController extends Controller
      */
     public function create()
     {
-        //Get the clients information
-        $clients = Customer::orderBy('rfc', 'DESC')->get();
-        //Get the products information
-        $products = Product::orderBy('name', 'DESC')->get();
-        //Total of sales today
-        $totalSalesPerDay = 0;
-        $salesToday = Sale::select('total')->where('created', date('Y-m-d'))
-            ->get();
-
-        foreach ($salesToday as $sale) {
-            $totalSalesPerDay += $sale->total;
-        }
-
-        return view('pages.add-pos')->with("clients",$clients,"totalSalesPerDay",$totalSalesPerDay);
+        //
     }
 
     /**
@@ -49,7 +35,7 @@ class PosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pos $pos)
+    public function show(Sale $sale)
     {
         //
     }
@@ -57,7 +43,7 @@ class PosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pos $pos)
+    public function edit(Sale $sale)
     {
         //
     }
@@ -65,7 +51,7 @@ class PosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pos $pos)
+    public function update(Request $request, Sale $sale)
     {
         //
     }
@@ -73,7 +59,7 @@ class PosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pos $pos)
+    public function destroy(Sale $sale)
     {
         //
     }

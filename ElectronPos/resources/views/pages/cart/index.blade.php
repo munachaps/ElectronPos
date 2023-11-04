@@ -17,31 +17,6 @@ $(document).ready(function() {
         }
     });
 });
-$('form').on('submit', function(e) {
-    e.preventDefault();
-    let productName = $('#searchProduct').val();
-
-    $.ajax({
-        url: '/search-product', // Replace with your actual endpoint
-        method: 'POST',
-        data: { product_name: productName },
-        success: function(response) {
-            // Clear the table
-            $('#searchResultsTable').empty();
-            // Populate the table with search results
-            $.each(response, function(index, product) {
-                let row = $('<tr>');
-                row.append($('<td>').text(product.name));
-                row.append($('<td>').text(product.quantity));
-                row.append($('<td>').text(product.price));
-                row.append($('<td>').text(product.name));
-                row.append($('<td>').html('<input type="number" class="form-control" value="1" min="1">'));
-                $('#searchResultsTable').append(row);
-            });
-        }
-    });
-});
-</script>
 </script>
 <div class="container" style="margin-top: 30px;">
     <form action="{{ route('search-products') }}" method="POST">
@@ -58,7 +33,7 @@ $('form').on('submit', function(e) {
         <!-- Product Table -->
         <div class="col-md-9">
             <h3>Products</h3>
-            <table class="table table-bordered" id="searchResultsTable">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -66,16 +41,14 @@ $('form').on('submit', function(e) {
                         <th>Quantity</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($results as $product)
-                    <tr>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>
-                            <input type="number" class="form-control" value="1" min="1">
-                        </td>
-                    </tr>
+                <tbody id="searchResultsTable">
+                    <!-- Search results will be populated here -->
+                    <h3>Search Results</h3>
+                    <ul>
+                     @foreach ($results as $result)
+                     <li>{{ $result }}</li>
                     @endforeach
+                </ul>
                 </tbody>
             </table>
         </div>        

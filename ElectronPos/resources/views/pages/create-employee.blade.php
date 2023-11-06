@@ -8,7 +8,7 @@
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
                 style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-                <span class="mask  bg-gradient-primary  opacity-6"></span>
+                <span class="mask bg-gradient-primary opacity-6"></span>
             </div>
             <div class="card card-body mx-3 mx-md-4 mt-n6">
                 <div class="row gx-4 mb-2">
@@ -54,7 +54,7 @@
                         @if (session('status'))
                         <div class="row">
                             <div class="alert alert-success alert-dismissible text-white" role="alert">
-                                <span class="text-sm">{{ Session::get('status') }}</span>
+                                <span class="text-sm">{{ session('status') }}</span>
                                 <button type="button" class="btn-close text-lg py-3 opacity-10"
                                     data-bs-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -62,67 +62,94 @@
                             </div>
                         </div>
                         @endif
-                        @if (Session::has('demo'))
-                                <div class="row">
-                                    <div class="alert alert-danger alert-dismissible text-white" role="alert">
-                                        <span class="text-sm">{{ Session::get('demo') }}</span>
-                                        <button type="button" class="btn-close text-lg py-3 opacity-10"
-                                            data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                </div>
+                        @if (session('demo'))
+                        <div class="row">
+                            <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                                <span class="text-sm">{{ session('demo') }}</span>
+                                <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                    data-bs-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
                         @endif
-                        <form method='POST' action='{{ route('submit-cattegory') }}'>
+                        <form method="POST" action="{{ route('submit-employee') }}">
                             @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">First Name</label>
-                                    <input type="text" name="name" class="form-control border border-2 p-2" required>
-                                    @error('name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
+                                    <input type="text" name="first_name" class="form-control border border-2 p-2" required>
+                                    @error('first_name')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Last Name</label>
-                                    <input type="text" name="name" class="form-control border border-2 p-2" required>
+                                    <input type="text" name="last_name" class="form-control border border-2 p-2" required>
                                     @error('last_name')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" name="address" class="form-control border border-2 p-2" required>
+                                    @error('last_name')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" name="phone_number" class="form-control border border-2 p-2" required>
+                                    @error('last_name')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                 <label class="form-label">Access Level</label>
+                                    <input type="number" name="access_level" class="form-control border border-2 p-2" id="access_level" value="1" min="1" max="10" step="1">
+                                    @error('access_level')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="name" class="form-control border border-2 p-2" required>
+                                    <input type="password" name="password" class="form-control border border-2 p-2" required>
                                     @error('password')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Confirm Password</label>
-                                    <input type="password" name="name" class="form-control border border-2 p-2" required>
-                                    @error('confirm_password')
-                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
+                                    <input type="password" name="confirm_password" class="form-control border border-2 p-2" required>
+                                    @error('password')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="personal_care">Status</label>
-                                <select name="product_status" id="personal_care" class="form-control border border-2 p-2" required>
-                                <option value="active">Active</option>
-                                <option value="not_active">Not Active</option>
-                                 </select>
-                                <hr>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create Customer</button>
-                                </div>
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control border border-2 p-2" required>
+                                    <option value="active">Active</option>
+                                    <option value="not_active">Not Active</option>
+                                </select>
+                            </div>
                             <hr>
-                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Create User</button>
+                            </div>
+                            <hr>
                         </form>
                     </div>
                 </div>

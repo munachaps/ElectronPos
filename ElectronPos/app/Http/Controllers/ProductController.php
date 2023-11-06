@@ -67,7 +67,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        /*$validatedData = $request->validate([
             'name' => 'required|string',
             'barcode' => 'required|string',
             'description' => 'required|string',
@@ -77,35 +77,30 @@ class ProductController extends Controller
             'category_id' => 'required|integer',
             'quantity' => 'required|string',
             'product_status' => 'required|string|in:active,inactive',
-        ]);
+        ]);*/
 
-        $product = new Product([
-            'name' => $validatedData['name'],
-            'barcode' => $validatedData['barcode'],
-            'description' => $validatedData['description'],
-            'price' => $validatedData['price'],
-            'selling_price' =>$validatedData['selling_price'],
-            'unit_of_measurement' => $validatedData['unit_of_measurement'],
-            'category_id' => $validatedData['category_id'],
-            'quantity' => $validatedData['quantity'],
-            'product_status' => $validatedData['product_status'],
-        ]);
-        
+
+        $product = new Product;
+        $product->name = $request->input("name");
+        $product->barcode = $request->input("barcode");
+        $product->description = $request->input("description");
+        $product->price = $request->input("price");
+        $product->selling_price = $request->input("selling_price");
+        $product->unit_of_measurement = $request->input("unit_of_measurement");
+        $product->category_id = $request->input("category_id");
+        $product->quantity = $request->input("quantity");
+        $product->product_status = $request->input("product_status");
+        $product->save();        
         try {
             $product->save();
-            
         } catch (Exception $e) {
-            
             echo $e->getMessage();
-
         }
-
         //Save the product to the database and redirect to the dashboard
-        $product->save();
         //stock module add the item and then save it as stock
         $stock = new Stock([
             'product_id' => $product->id,
-            'quantity' => $validatedData['quantity'], // Adjust as needed
+            'quantity' => $request->input('quantity'), // Adjust as needed
         ]);
         //save the stock
         if ($stock->save()) {

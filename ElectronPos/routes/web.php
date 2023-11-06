@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('delete-product');
 	Route::get('/create-cattegory', [CattegoryController::class, 'create'])->name('create-cattegory');
 	Route::post('/submit-cattegory', [CattegoryController::class, 'store'])->name('submit-cattegory');
+	Route::post('/submit-employee', [EmployeeController::class, 'store'])->name('submit-employee');
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');
 	Route::get('/create-suppliers', [SuppliersController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-suppliers', [SupplierController::class, 'store'])->name('submit-suppliers');

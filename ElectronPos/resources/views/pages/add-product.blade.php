@@ -89,9 +89,9 @@ $(document).ready(function(){
                                 </div>
                         @endif
                         <form method="POST" action="{{ route('submit-product') }}">
-    @csrf
-    <div class="row">
-        <div class="mb-3 col-md-6">
+                          @csrf
+                        <div class="row">
+         <div class="mb-3 col-md-6">
             <label class="form-label">Product Name</label>
             <input type="text" name="name" class="form-control border border-2 p-2" required>
             @error('name')

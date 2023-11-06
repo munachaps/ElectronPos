@@ -37,7 +37,7 @@ class SalesController extends Controller
         );
     }
 
-    //make the sale and store the sale into the sales table
+    //make the sale and store the sale into the sales table. add the sales to the cart and fill the cart
     public function store(SaleRequest $request)
     {
         $sale = Sales::create(

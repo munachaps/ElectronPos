@@ -67,8 +67,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
-        //dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string',
             'barcode' => 'required|string',
@@ -93,6 +91,15 @@ class ProductController extends Controller
             'product_status' => $validatedData['product_status'],
         ]);
         
+        try {
+            $product->save();
+            
+        } catch (Exception $e) {
+            
+            echo $e->getMessage();
+
+        }
+
         //Save the product to the database and redirect to the dashboard
         $product->save();
         //stock module add the item and then save it as stock
@@ -101,11 +108,12 @@ class ProductController extends Controller
             'quantity' => $validatedData['quantity'], // Adjust as needed
         ]);
         //save the stock
-        $stock->save();
-        if (!$product) {
-            return redirect()->back()->with('error', 'Sorry, there a problem while creating product.');
-        }
-        return redirect()->route('view-products')->with('success', 'Success, your product has been created and added to stock');
+        if ($stock->save()) {
+            return redirect()->route('view-products')->with('success', 'Success, your product has been created and added to stock');
+        } else {
+            // Handle the case where stock saving fails
+            return redirect()->back()->with('error', 'Sorry, there was a problem while adding the product to stock.');
+        }      
         //return redirect()->back()->with('message', 'Product has been added successfully');
     }
     /**

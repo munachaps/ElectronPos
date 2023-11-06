@@ -41,7 +41,7 @@ Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')-
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/create-product', [ProductController::class, 'create'])->name('create-product');
-	Route::get('/api/products/search', [ProductController::class, 'searchProduct'])->name('api.products.search');
+	Route::get('/search/products', [ProductController::class, 'searchProduct'])->name('/search/products');
 	Route::post('/add-to-cart/{product}', [ProductController::class, 'addToCart'])->name('product.addToCart');
 	Route::get('/create-stock', [StockController::class, 'create'])->name('create-stock');
 	Route::post('/submit-product', [ProductController::class, 'store'])->name('submit-product');
@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/submit-cattegory', [CattegoryController::class, 'store'])->name('submit-cattegory');
 	Route::post('/submit-employee', [EmployeeController::class, 'store'])->name('submit-employee');
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');
+	Route::post('add-to-cart',[CartController::class],'addToCart')->name('add-to-cart');
 	Route::get('/create-suppliers', [SuppliersController::class, 'create'])->name('create-suppliers');
 	Route::post('/submit-suppliers', [SupplierController::class, 'store'])->name('submit-suppliers');
 	Route::get('/create-sales', [SalesController::class, 'index'])->name('create-sales');
@@ -71,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/view-customers', [CustomerController::class, 'viewAllCustomers'])->name('view-customers');
 	Route::get('/view-orders', [OrdersController::class, 'index'])->name('view-orders');
 	Route::get('/view-reports', [ReportController::class, 'create'])->name('view-reports');
-	Route::post('/search-products', [ProductController::class, 'searchProductByName'])->name('search-products');
+	Route::post('/search-products', [ProductController::class, 'searchProducts'])->name('search-products');
 	Route::post('/search-cart-product',[CartController::class, 'searchCartProduct'])->name('search-cart-product');
 	//Route::get('/get-product/{id}',[PosController::class, 'create']);
 	Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');

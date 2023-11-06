@@ -24,39 +24,10 @@ class ProductController extends Controller
         return view('pages.view-products')->with("products",$products);
     }
 
+    public function searchProducts(Request $request){
 
-    public function autoAddToCart(Request $request, $productId)
-{
-    $product = Product::find($productId);
-
-    if (!$product) {
-        return response()->json(['message' => 'Product not found'], 404);
+        
     }
-
-    // Assuming you have a user authentication system, you can retrieve the authenticated user
-    $user = auth()->user();
-
-    if (!$user) {
-        return response()->json(['message' => 'User not authenticated'], 401);
-    }
-
-    // You can implement cart logic here, similar to the previous examples
-    // For example, you can use the Cart model to manage the cart for the user
-
-    // Example: Add the product to the user's cart
-    $user->cart()->products()->attach($product->id, ['quantity' => 1]);
-
-    return response()->json(['message' => 'Product added to cart'], 200);
-}
-
-    public function searchProduct(Request $request){
-
-    $searchTerm = $request->input('search');
-    $products = Product::where('name', 'like', "%$searchTerm%")
-        ->orWhere('description', 'like', "%$searchTerm%")
-        ->get();
-    return view('pages.sales.create', compact('products'));
-}
 
     public function editProduct($id){        
         $products = Product::find($id);

@@ -24,12 +24,14 @@ class ProductController extends Controller
         return view('pages.view-products')->with("products",$products);
     }
 
-    public function searchProductByName(Request $request)
-    {
-        $query = $request->input('product_name');
-        $results = Product::where('name', 'like', "%$query%")->get();
-        return view('pages.cart.index')->with("results",$results);
-    }
+    public function searchProduct(Request $request){
+
+    $searchTerm = $request->input('search');
+    $products = Product::where('name', 'like', "%$searchTerm%")
+        ->orWhere('description', 'like', "%$searchTerm%")
+        ->get();
+    return view('pages.sales.create', compact('products'));
+}
 
     public function editProduct($id){        
         $products = Product::find($id);
@@ -62,24 +64,49 @@ class ProductController extends Controller
         return view("pages.add-product")->with("cattegories",$cattegories)->with("user",$user);
     }
 
+
+    public function addToCart(Request $request,$productId){
+
+    $product = Product::find($productId);
+
+    if (!$product) {
+        return redirect()->route('pages.sales.index')->with('error', 'Product not found.');
+    }
+
+    // Create or update the cart for the user (assuming user authentication)
+    $userCart = Cart::firstOrNew(['user_id' => auth()->user()->id]);
+    $cartItems = $userCart->items ?? [];
+
+    // Check if the product is already in the cart
+    $found = false;
+    foreach ($cartItems as &$item) {
+        if ($item['product_id'] == $product->id) {
+            $item['quantity'] += 1; // Increment quantity
+            $found = true;
+        }
+    }
+
+    if (!$found) {
+        // Add the product to the cart
+        $cartItems[] = [
+            'product_id' => $product->id,
+            'quantity' => 1,
+            'product' => $product,
+        ];
+    }
+
+    $userCart->items = $cartItems;
+    $userCart->save();
+
+    return redirect()->route('pages.sales.create')->with('success', 'Product added to cart.');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        /*$validatedData = $request->validate([
-            'name' => 'required|string',
-            'barcode' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'selling_price' => 'required|numeric',
-            'unit_of_measurement' => 'required|numeric',
-            'category_id' => 'required|integer',
-            'quantity' => 'required|string',
-            'product_status' => 'required|string|in:active,inactive',
-        ]);*/
-
-
         $product = new Product;
         $product->name = $request->input("name");
         $product->barcode = $request->input("barcode");

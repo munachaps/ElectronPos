@@ -41,6 +41,8 @@ Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')-
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/create-product', [ProductController::class, 'create'])->name('create-product');
+	Route::get('/product-search', [ProductController::class, 'searchProduct'])->name('product-search');
+	Route::post('/add-to-cart/{product}', [ProductController::class, 'addToCart'])->name('product.addToCart');
 	Route::get('/create-stock', [StockController::class, 'create'])->name('create-stock');
 	Route::post('/submit-product', [ProductController::class, 'store'])->name('submit-product');
 	Route::get('/updateProduct/{id}', [ProductController::class, 'editProduct'])->name('updateProduct');

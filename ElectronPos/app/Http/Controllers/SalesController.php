@@ -19,28 +19,33 @@ class SalesController extends Controller
     //view for making the sales (view will return the total sales also to the blade file)
     public function index()
     {
+        $products = Product::all();
+        return view("pages.sales.create")->with("products",$products);
+
         //get the data for the clients and the products..
-        $clients = Customer::orderBy('id', 'DESC')->get();
+       // $clients = Customer::orderBy('id', 'DESC')->get();
         //Get the products information
-        $products = Product::orderBy('name', 'DESC')->get();
+        //$products = Product::orderBy('name', 'DESC')->get();
         //Total of sales today
-        $totalSalesPerDay = 0;
-        $salesToday = Sales::select('total')->where('created', date('Y-m-d'))
-            ->get();
-        foreach ($salesToday as $sale) {
-            $totalSalesPerDay += $sale->total;
-        }
+        //$totalSalesPerDay = 0;
+        //$salesToday = Sales::select('total')->where('created', date('Y-m-d'))
+        //    ->get();
+        //foreach ($salesToday as $sale) {
+          //  $totalSalesPerDay += $sale->total;
+       // }
         //return view for creating the sales....
-        return view(
-            'pages.sales.create',
-            compact('clients', 'products', 'totalSalesPerDay')
-        );
+        //return view(
+          //  'pages.sales.create',
+            //compact('clients', 'products', 'totalSalesPerDay')
+        //);
     }
 
     //make the sale and store the sale into the sales table. add the sales to the cart and fill the cart
     public function store(SaleRequest $request)
     {
-        $sale = Sales::create(
+
+        echo "hello world";
+       /* $sale = Sales::create(
             [
                 'total'   => $request->input('total'),
                 'rfc'     => $request->input('rfc'),
@@ -67,7 +72,7 @@ class SalesController extends Controller
                 return new Response($completed, 201);
             }
         }
-        return new Response('Cart was not filled', 500);
+        return new Response('Cart was not filled', 500)*/;
     }
 
     /**

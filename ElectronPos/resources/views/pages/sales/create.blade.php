@@ -21,7 +21,6 @@ $(document).ready(function () {
                 data: { product_search: searchTerm, _token: "{{ csrf_token() }}" },
                 success: function (response) {
                     const searchResults = $('#search-results');
-                    searchResults.empty();
                     if (response.products.length > 0) {
                         response.products.forEach(function (product) {
                             const row = `
@@ -41,7 +40,7 @@ $(document).ready(function () {
                             addToCart(productId);
                         });
                     } else {
-                        searchResults.html('<p>No products found.</p>');
+                        //searchResults.html('<p>No products found.</p>');
                     }
                 }
             });

@@ -25,7 +25,11 @@ class ProductController extends Controller
     }
 
     public function searchProducts(Request $request){
-
+       
+        $searchTerm = $request->input('product_search');    
+        // Perform the search using the Product model (adjust this based on your model structure)
+        $products = Product::where('name', 'like', "%$searchTerm%")->get(); 
+        return response()->json(['products' => $products]);
         
     }
 

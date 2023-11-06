@@ -13,11 +13,11 @@
 $(document).ready(function () {
     $('#search').on('keydown', function (event) {
         if (event.which === 13) { // Check if the Enter key is pressed (key code 13)
-            const searchTerm = $(this).val();
-            console.log(searchTerm);
+            const searchTerm = $(this).val(); 
+            const csrfToken = $('meta[name="csrf-token"]').attr('content'); // Retrieve the CSRF token
             $.ajax({
                 url: "/search/products",
-                method: 'POST',
+                method: 'GET',
                 data: { product_search: searchTerm, _token: "{{ csrf_token() }}" },
                 success: function (response) {
                     const searchResults = $('#search-results');
@@ -54,12 +54,14 @@ $(document).ready(function () {
     }
 });
 </script>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h1>Electron Point Of Sale</h1>
                 <input type="text" id="search" placeholder="Search for products" class="form-control">
+                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}">
                 <hr>
                 <table class="table table-bordered">
                     <thead>

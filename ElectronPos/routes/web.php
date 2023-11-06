@@ -41,13 +41,14 @@ Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')-
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/create-product', [ProductController::class, 'create'])->name('create-product');
-	Route::get('/product-search', [ProductController::class, 'searchProduct'])->name('product-search');
+	Route::get('/api/products/search', [ProductController::class, 'searchProduct'])->name('api.products.search');
 	Route::post('/add-to-cart/{product}', [ProductController::class, 'addToCart'])->name('product.addToCart');
 	Route::get('/create-stock', [StockController::class, 'create'])->name('create-stock');
 	Route::post('/submit-product', [ProductController::class, 'store'])->name('submit-product');
 	Route::get('/updateProduct/{id}', [ProductController::class, 'editProduct'])->name('updateProduct');
 	Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('delete-product');
 	Route::get('/create-cattegory', [CattegoryController::class, 'create'])->name('create-cattegory');
+	Route::post('/add-to-cart/{product}',[ProductController::class, 'autoAddToCart'])->name('product.autoAddToCart');
 	Route::post('/submit-cattegory', [CattegoryController::class, 'store'])->name('submit-cattegory');
 	Route::post('/submit-employee', [EmployeeController::class, 'store'])->name('submit-employee');
 	Route::get('/sell-product', [SalesController::class, 'create'])->name('sell-product');

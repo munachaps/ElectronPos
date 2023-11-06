@@ -3,45 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electron Point Of Sale</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Point of Sale</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Your custom CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <!-- Product Search Form -->
-            <div class="col-md-4">
-                <form action="{{ route('product-search') }}" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Search for products">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </form>
-            </div>
 
-            <!-- Search Results -->
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Search Results</h3>
-                        <ul>
-                            @foreach ($products as $product)
-                                <li>
-                                    {{ $product->name }}
-                                    <span class="badge bg-primary">Price: ${{ $product->price }}</span>
-                                    <form action="{{ route('product.addToCart', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
-                                    </form>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Cart Section -->
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+          <div class="col-md-6">
+
+            <h1>Electron Point Of Sale</h1>
+            <input type="text" id="search-box" placeholder="Search for products" class="form-control">
+            <hr>
+            <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Amount</th>
+                  </tr>
+              </thead>
+              <tbody id="cart-items">
+                  <!-- Cart items will be populated here -->
+              </tbody>
+          </table>
+            
+          </div>
+
+          <div class="col-md-6">
+
+            
+            
+          </div>
         </div>
     </div>
+
+    <!-- Bootstrap JavaScript and jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <!-- Your custom JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>

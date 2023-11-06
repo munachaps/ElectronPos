@@ -29,6 +29,7 @@ $(document).ready(function () {
                                     <td>$${product.price}</td>
                                     <td><input type="number" min="1" value="1" class="quantity-input"></td>
                                     <td><button class="btn btn-success btn-sm add-to-cart" data-product-id="${product.id}">Add to Cart</button></td>
+                                    <td>$${product.price}</td>
                                 </tr>
                             `;
                             searchResults.append(row);
@@ -68,7 +69,8 @@ $(document).ready(function () {
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Action</th>
+                            <th>Amount</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody id="search-results">
